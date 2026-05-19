@@ -1,0 +1,52 @@
+# LLaMA-Factory training config (template) for LoRA SFT
+
+### model
+model_name_or_path: Qwen/Qwen2.5-3B-Instruct
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+
+### lora
+lora_target: all
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+
+### dataset
+dataset_dir: /home/algo/video_agent_group/qianqian/glamdring/data
+dataset: mmlu_mcq_train
+eval_dataset: mmlu_mcq_eval
+template: qwen
+cutoff_len: 1024
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: /home/algo/video_agent_group/qianqian/glamdring/outputs/sft_lora
+logging_steps: 10
+save_steps: 200
+save_total_limit: 3
+report_to: tensorboard
+plot_loss: true
+overwrite_output_dir: false
+
+### train
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+num_train_epochs: 1.0
+max_steps: 0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+fp16: false
+gradient_checkpointing: true
+
+### eval
+do_eval: true
+per_device_eval_batch_size: 8
+eval_strategy: steps
+eval_steps: 200

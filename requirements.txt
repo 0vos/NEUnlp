@@ -1,0 +1,13 @@
+# Minimal runtime deps for data prep + eval + monitoring.
+# Training deps for LLaMA-Factory will be installed separately (see README).
+
+datasets>=2.19.0
+transformers>=4.41.0
+accelerate>=0.30.0
+peft>=0.11.0
+tensorboard>=2.15.0
+tqdm>=4.66.0
+numpy>=1.24.0
+PyYAML>=6.0.1
+matplotlib>=3.7.0
+
